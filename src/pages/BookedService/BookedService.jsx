@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-const AddAServices = () => {
+const BookedService = () => {
   const handleAddAService = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -25,18 +23,6 @@ const AddAServices = () => {
       providerImage,
     };
     console.log(formDetails);
-
-    fetch("http://localhost:5000/services", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formDetails),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
   };
   return (
     <div>
@@ -127,4 +113,4 @@ const AddAServices = () => {
   );
 };
 
-export default AddAServices;
+export default BookedService;

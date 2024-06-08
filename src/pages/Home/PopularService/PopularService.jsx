@@ -1,28 +1,35 @@
 import { Link } from "react-router-dom";
 
-const PopularService = () => {
+const PopularService = ({ pService }) => {
+  const {
+    _id,
+    serviceName,
+    serviceImage,
+    description,
+    providerImage,
+    providerName,
+    providerEmail,
+    area,
+    price,
+    serviceTakingDate,
+    currentUserName,
+    currentUserEmail,
+    specialInstruction,
+  } = pService;
   return (
-    <div>
+    <div className="gird grid-cols-3">
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-            alt="Shoes"
-          />
+          <img src={serviceImage} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">Ac Servicing</h2>
-          <p>
-            If a dog chews shoes whose shoes does he choose?If a dog chews shoes
-            whose shoes does he choose?If a dog chews shoes whose shoes does he
-            choose?If a dog chews shoes whose shoes does he choose?If a dog
-            chews shoes whose shoes does he choose?
-          </p>
+          <h2 className="card-title">{serviceName}</h2>
+          <p>{description}</p>
           <div className="space-y-2">
             <div className="flex justify-between items-center">
               <div className="flex flex-col">
-                <p>Service Provider Name</p>
-                <p>Service price $ 100</p>
+                <p>Service Provider:{providerName}</p>
+                <p>Service price ${price}</p>
               </div>
               <div className="avatar">
                 <div className="w-24 rounded">
@@ -31,15 +38,11 @@ const PopularService = () => {
               </div>
             </div>
 
-            <button className="btn w-full btn-primary">View Details</button>
+            <Link to={`/serviceDetails/${_id}`}>
+              <button className="btn w-full btn-primary">View Details</button>
+            </Link>
           </div>
         </div>
-      </div>
-
-      <div className="text-center my-2">
-        <Link to="/allService">
-          <button className="btn btn-outline">Show All</button>
-        </Link>
       </div>
     </div>
   );

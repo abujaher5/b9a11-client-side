@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 import { getAuth, signInWithPopup } from "firebase/auth";
@@ -18,15 +18,19 @@ import app from "../../firebase/firebase.config";
 
 const Login = () => {
   const { logInUser } = useContext(AuthContext);
+
   const auth = getAuth(app);
 
   const googleProvider = new GoogleAuthProvider();
+
+  const navigate = useNavigate();
 
   const handleGoogleLogin = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate("/");
       })
       .catch((error) => {
         console.error(error);
@@ -43,6 +47,7 @@ const Login = () => {
     logInUser(email, password)
       .then((result) => {
         console.log(result.user);
+        navigate("/");
       })
       .then((error) => {
         console.error(error);
