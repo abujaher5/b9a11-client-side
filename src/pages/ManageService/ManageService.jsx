@@ -1,30 +1,44 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const ManageService = () => {
-  const lodedUsers = useLoaderData();
-  const [users, setUsers] = useState(lodedUsers);
-  console.log(lodedUsers);
+  const loadedServices = useLoaderData();
 
-  const handleDelete = (id) => {
-    console.log(id);
+  const [services, setServices] = useState(loadedServices);
 
-    fetch(`http://localhost:5000/services/${id}`, {
-      method: "Delete",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/services/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted Successfully");
 
-        if (data.deletedCount > 0) {
-          alert("Deleted Successfully");
-        }
-      });
+              const remainServices = services.filter(
+                (service) => service._id !== _id
+              );
+              setServices(remainServices);
+            }
+          });
+      }
+    });
   };
 
-  const handleUpdateService = (_id) => {
-    console.log(_id);
-  };
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -33,29 +47,29 @@ const ManageService = () => {
           <tr>
             <th>Service Name</th>
             <th>Provider Name</th>
-            <th>Price</th>
+            <th>Service Price</th>
+            <th> Manage Service</th>
           </tr>
         </thead>
         <tbody>
           {/* row 1 */}
-          <tr className="bg-base-200">
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-            <td>
-              <button
-                onClick={() => handleDelete(users._id)}
-                className="btn btn-outline"
-              >
-                Delete Service
-              </button>
-            </td>
-            <td>
-              <button onClick={handleUpdateService} className="btn btn-outline">
-                Update Service
-              </button>
-            </td>
-          </tr>
+          {services.map((s) => (
+            <tr key={s._id} className="bg-base-200">
+              <td>{s.serviceName}</td>
+              <td>{s.providerName}</td>
+              <td>$ {s.price}</td>
+              <td>
+                <button onClick={() => handleDelete(s._id)} className="btn ">
+                  <MdDelete className="text-2xl"></MdDelete>
+                </button>
+                <Link to={`updateService/${s._id}`}>
+                  <button className="btn">
+                    <FaEdit className="text-2xl"></FaEdit>
+                  </button>
+                </Link>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

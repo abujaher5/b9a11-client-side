@@ -6,15 +6,15 @@ const PopularService = ({ pService }) => {
     serviceName,
     serviceImage,
     description,
-    providerImage,
+    // providerImage,
     providerName,
-    providerEmail,
-    area,
+    // providerEmail,
+    // area,
     price,
-    serviceTakingDate,
-    currentUserName,
-    currentUserEmail,
-    specialInstruction,
+    // serviceTakingDate,
+    // currentUserName,
+    // currentUserEmail,
+    // specialInstruction,
   } = pService;
   // console.log(pService);
   return (
