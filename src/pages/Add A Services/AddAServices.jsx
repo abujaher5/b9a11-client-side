@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AddAServices = () => {
+  const navigate = useNavigate();
+
   const handleAddAService = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -36,6 +38,7 @@ const AddAServices = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        navigate("/");
       });
   };
   return (

@@ -3,12 +3,12 @@ import AllServiceCard from "../serviceCard/AllServiceCard";
 
 const AllService = () => {
   const services = useLoaderData();
-  console.log(services);
+  // console.log(services);
   return (
     <div>
       <div>
         {services.map((service) => (
-          <AllServiceCard key={service.id} service={service}></AllServiceCard>
+          <AllServiceCard key={service._id} service={service}></AllServiceCard>
         ))}
       </div>
 

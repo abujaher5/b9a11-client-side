@@ -8,17 +8,20 @@ import AllService from "../components/AllService/AllService";
 import ServiceCardDetails from "../components/ServiceCardDetails";
 import ManageService from "../pages/ManageService/ManageService";
 import BookedService from "../pages/BookedService/BookedService";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
+import BookService from "../pages/BookService/BookService";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
         element: <Home></Home>,
-        // loader: () => fetch(`${import.meta.env.VITE_API_URL}/services`),
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/services`),
+        // loader: () => fetch("http://localhost:5000/services"),
       },
       {
         path: "/login",
@@ -31,7 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/allService",
         element: <AllService></AllService>,
-        loader: () => fetch("/serviceData.json"),
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/services`),
       },
       {
         path: "/addAService",
@@ -40,19 +43,30 @@ const router = createBrowserRouter([
       {
         path: "/serviceDetails/:id",
         element: <ServiceCardDetails></ServiceCardDetails>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
-
         // loader: ({ params }) =>
-        //   fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
+        //   fetch(`http://localhost:5000/services/${params.id}`),
+
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
       },
       {
         path: "/manageService",
         element: <ManageService></ManageService>,
+        loader: () => fetch("http://localhost:5000/services"),
       },
       {
         path: "/bookedService",
         element: <BookedService></BookedService>,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/bookings`),
+        // loader: ({ params }) =>
+        //   fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
+      },
+      {
+        path: "/bookService/:id",
+        element: <BookService></BookService>,
+        // loader: () => fetch(`${import.meta.env.VITE_API_URL}/services`),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
       },
     ],
   },

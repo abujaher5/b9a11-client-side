@@ -4,7 +4,7 @@ import PopularService from "./PopularService/PopularService";
 
 const Home = () => {
   const popularServiceData = useLoaderData();
-  console.log(popularServiceData);
+  // console.log(popularServiceData);
   return (
     <div>
       <Banner></Banner>

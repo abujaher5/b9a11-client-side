@@ -1,6 +1,25 @@
+import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
+
 const ManageService = () => {
-  const handleDelete = (_id) => {
-    console.log(_id);
+  const lodedUsers = useLoaderData();
+  const [users, setUsers] = useState(lodedUsers);
+  console.log(lodedUsers);
+
+  const handleDelete = (id) => {
+    console.log(id);
+
+    fetch(`http://localhost:5000/services/${id}`, {
+      method: "Delete",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        if (data.deletedCount > 0) {
+          alert("Deleted Successfully");
+        }
+      });
   };
 
   const handleUpdateService = (_id) => {
@@ -24,7 +43,10 @@ const ManageService = () => {
             <td>Quality Control Specialist</td>
             <td>Blue</td>
             <td>
-              <button onClick={handleDelete} className="btn btn-outline">
+              <button
+                onClick={() => handleDelete(users._id)}
+                className="btn btn-outline"
+              >
                 Delete Service
               </button>
             </td>

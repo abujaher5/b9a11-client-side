@@ -6,18 +6,18 @@ const AllServiceCard = ({ service }) => {
     serviceName,
     serviceImage,
     description,
-    providerImage,
+    // providerImage,
     providerName,
-    providerEmail,
+    // providerEmail,
     area,
     price,
-    serviceTakingDate,
-    currentUserName,
-    currentUserEmail,
-    specialInstruction,
+    // serviceTakingDate,
+    // currentUserName,
+    // currentUserEmail,
+    // specialInstruction,
   } = service;
-
-  console.log(_id);
+  // console.log(service);
+  // console.log(_id);
   return (
     <div className="card card-compact mx-auto w-3/4 bg-base-100 shadow-xl">
       <figure>
@@ -34,7 +34,7 @@ const AllServiceCard = ({ service }) => {
               <p>Service Area : {area} </p>
             </div>
             <div className="avatar">
-              <div className="w-24 rounded">
+              <div className="w-24 rounded-full">
                 <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
               </div>
             </div>

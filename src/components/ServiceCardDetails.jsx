@@ -1,11 +1,11 @@
 // import { useEffect, useState } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const ServiceCardDetails = () => {
   const singleService = useLoaderData();
-  console.log(singleService);
+  // console.log(singleService);
 
-  const { id } = useParams();
+  // const { id } = useParams();
   // const [details, setDetails] = useState({});
   // console.log(details);
   // useEffect(() => {
@@ -13,18 +13,19 @@ const ServiceCardDetails = () => {
   //   setDetails(aData);
   // }, []);
   const {
+    _id,
     serviceName,
     serviceImage,
     description,
-    providerImage,
+    // providerImage,
     providerName,
-    providerEmail,
+    // providerEmail,
     area,
     price,
-    serviceTakingDate,
-    currentUserName,
-    currentUserEmail,
-    specialInstruction,
+    // serviceTakingDate,
+    // currentUserName,
+    // currentUserEmail,
+    // specialInstruction,
   } = singleService;
   // console.log(details);
 
@@ -44,15 +45,19 @@ const ServiceCardDetails = () => {
               <p>Service Area : {area} </p>
             </div>
             <div className="avatar">
-              <div className="w-24 rounded">
+              <div className="w-24 rounded-full">
                 <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
               </div>
             </div>
           </div>
 
-          <Link to="/bookedService">
+          <Link to={`/bookService/${_id}`}>
             <button className="btn w-full btn-primary">Book Now</button>
           </Link>
+
+          {/* <Link to={"/bookService"}>
+            <button className="btn w-full btn-primary">Book Now</button>
+          </Link> */}
         </div>
       </div>
     </div>

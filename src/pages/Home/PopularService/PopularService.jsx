@@ -16,6 +16,7 @@ const PopularService = ({ pService }) => {
     currentUserEmail,
     specialInstruction,
   } = pService;
+  // console.log(pService);
   return (
     <div className="gird grid-cols-3">
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
