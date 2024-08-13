@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ManageService = () => {
   const loadedServices = useLoaderData();
@@ -41,6 +42,9 @@ const ManageService = () => {
 
   return (
     <div className="overflow-x-auto">
+      <Helmet>
+        <title>Fix Gadget | Manage Service</title>
+      </Helmet>
       <table className="table">
         {/* head */}
         <thead>
@@ -62,7 +66,7 @@ const ManageService = () => {
                 <button onClick={() => handleDelete(s._id)} className="btn ">
                   <MdDelete className="text-2xl"></MdDelete>
                 </button>
-                <Link to={`updateService/${s._id}`}>
+                <Link to={`/updateService/${s._id}`}>
                   <button className="btn">
                     <FaEdit className="text-2xl"></FaEdit>
                   </button>

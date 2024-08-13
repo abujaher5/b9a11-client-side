@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from "react-helmet";
 
 const BookService = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -73,6 +74,9 @@ const BookService = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Fix Gadget | Book Service</title>
+      </Helmet>
       <form onSubmit={handleBookService}>
         <div className="md:grid grid-cols-2 gap-6 bg-gray-200 rounded-xl p-16 ">
           <div className="form-control">

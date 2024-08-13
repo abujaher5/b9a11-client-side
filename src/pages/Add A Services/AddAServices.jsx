@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const AddAServices = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const handleAddAService = (e) => {
     e.preventDefault();
@@ -11,10 +15,9 @@ const AddAServices = () => {
     const area = form.area.value;
     const description = form.description.value;
     const serviceImage = form.serviceImage.value;
-
-    const providerName = form.providerName.value;
-    const providerEmail = form.providerEmail.value;
-    const providerImage = form.providerImage.value;
+    const providerName = user?.displayName;
+    const providerEmail = user?.email;
+    const providerImage = user?.photoURL;
 
     const formDetails = {
       serviceName,
@@ -43,6 +46,9 @@ const AddAServices = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Fix Gadget | Add A Service</title>
+      </Helmet>
       <form onSubmit={handleAddAService}>
         <div className="md:grid grid-cols-2 gap-6 bg-gray-200 rounded-xl p-16 ">
           <div className="form-control">
@@ -95,7 +101,7 @@ const AddAServices = () => {
             <input
               type="text"
               name="providerName"
-              placeholder="Enter Amount"
+              defaultValue={user?.displayName}
               className="input input-bordered w-full "
             />
           </div>
@@ -105,6 +111,7 @@ const AddAServices = () => {
               type="text"
               name="providerEmail"
               placeholder="Enter Provider Email"
+              defaultValue={user?.email}
               className="input input-bordered w-full "
             />
           </div>
@@ -114,6 +121,7 @@ const AddAServices = () => {
               type="text"
               name="providerImage"
               placeholder="Enter Provider Image"
+              defaultValue={user?.photoURL}
               className="input input-bordered w-full "
             />
           </div>

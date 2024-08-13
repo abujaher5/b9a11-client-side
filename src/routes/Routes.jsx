@@ -10,6 +10,7 @@ import ManageService from "../pages/ManageService/ManageService";
 import BookedService from "../pages/BookedService/BookedService";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import BookService from "../pages/BookService/BookService";
+import UpdateService from "../pages/ManageService/UpdateService";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,12 @@ const router = createBrowserRouter([
         path: "/bookService/:id",
         element: <BookService></BookService>,
         // loader: () => fetch(`${import.meta.env.VITE_API_URL}/services`),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
+      },
+      {
+        path: "/updateService/:id",
+        element: <UpdateService></UpdateService>,
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
       },

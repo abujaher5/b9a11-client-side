@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 const PopularService = ({ pService }) => {
@@ -19,6 +20,9 @@ const PopularService = ({ pService }) => {
   // console.log(pService);
   return (
     <div className="gird grid-cols-3">
+      <Helmet>
+        <title>Fix Gadget | Popular Service</title>
+      </Helmet>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>
           <img src={serviceImage} alt="Shoes" />

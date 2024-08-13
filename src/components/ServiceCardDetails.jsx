@@ -1,4 +1,5 @@
 // import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
 
 const ServiceCardDetails = () => {
@@ -31,6 +32,9 @@ const ServiceCardDetails = () => {
 
   return (
     <div className="card card-compact mx-auto w-3/4 bg-base-100 shadow-xl">
+      <Helmet>
+        <title>Fix Gadget | Service Details</title>
+      </Helmet>
       <figure>
         <img className="w-1/2 h-1/3" src={serviceImage} alt="Shoes" />
       </figure>

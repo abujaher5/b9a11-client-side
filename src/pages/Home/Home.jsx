@@ -1,12 +1,16 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Banner from "./Banner/Banner";
 import PopularService from "./PopularService/PopularService";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const popularServiceData = useLoaderData();
   // console.log(popularServiceData);
   return (
     <div>
+      <Helmet>
+        <title>Fix Gadget | Home</title>
+      </Helmet>
       <Banner></Banner>
       <div>
         <div className="grid grid-cols-1 gap-8 mt-6 md:grid-cols-2 lg:grid-cols-3">

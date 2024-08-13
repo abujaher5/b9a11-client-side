@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
 const AllServiceCard = ({ service }) => {
@@ -20,6 +21,10 @@ const AllServiceCard = ({ service }) => {
   // console.log(_id);
   return (
     <div className="card card-compact mx-auto w-3/4 bg-base-100 shadow-xl">
+      <Helmet>
+        <title>Fix Gadget | All Service</title>
+      </Helmet>
+      ;
       <figure>
         <img className="w-1/2 h-1/3" src={serviceImage} alt="Shoes" />
       </figure>
