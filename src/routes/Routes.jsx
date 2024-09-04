@@ -22,7 +22,6 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
         loader: () => fetch(`${import.meta.env.VITE_API_URL}/services`),
-        // loader: () => fetch("http://localhost:5000/services"),
       },
       {
         path: "/login",
@@ -44,9 +43,6 @@ const router = createBrowserRouter([
       {
         path: "/serviceDetails/:id",
         element: <ServiceCardDetails></ServiceCardDetails>,
-        // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/services/${params.id}`),
-
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
       },
@@ -59,13 +55,10 @@ const router = createBrowserRouter([
         path: "/bookedService",
         element: <BookedService></BookedService>,
         loader: () => fetch(`${import.meta.env.VITE_API_URL}/bookings`),
-        // loader: ({ params }) =>
-        //   fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
       },
       {
         path: "/bookService/:id",
         element: <BookService></BookService>,
-        // loader: () => fetch(`${import.meta.env.VITE_API_URL}/services`),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
       },
