@@ -4,31 +4,18 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const ServiceCardDetails = () => {
   const singleService = useLoaderData();
-  // console.log(singleService);
 
-  // const { id } = useParams();
-  // const [details, setDetails] = useState({});
-  // console.log(details);
-  // useEffect(() => {
-  //   const aData = singleService.find((a) => a._id == id);
-  //   setDetails(aData);
-  // }, []);
   const {
     _id,
     serviceName,
     serviceImage,
     description,
-    // providerImage,
+
     providerName,
-    // providerEmail,
+
     area,
     price,
-    // serviceTakingDate,
-    // currentUserName,
-    // currentUserEmail,
-    // specialInstruction,
   } = singleService;
-  // console.log(details);
 
   return (
     <div className="card card-compact mx-auto w-3/4 bg-base-100 shadow-xl">

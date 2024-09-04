@@ -18,10 +18,6 @@ const UpdateService = () => {
     providerEmail,
     area,
     price,
-    // serviceTakingDate,
-    // currentUserName,
-    // currentUserEmail,
-    // specialInstruction,
   } = updateService;
   const handleUpdateAService = (e) => {
     e.preventDefault();
@@ -31,7 +27,6 @@ const UpdateService = () => {
     const area = form.area.value;
     const description = form.description.value;
     const serviceImage = form.serviceImage.value;
-
     const providerName = form.providerName.value;
     const providerEmail = form.providerEmail.value;
     const providerImage = form.providerImage.value;
@@ -46,7 +41,6 @@ const UpdateService = () => {
       providerEmail,
       providerImage,
     };
-    console.log(updateDetails);
 
     //send data
 

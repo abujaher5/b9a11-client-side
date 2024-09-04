@@ -11,6 +11,7 @@ import BookedService from "../pages/BookedService/BookedService";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import BookService from "../pages/BookService/BookService";
 import UpdateService from "../pages/ManageService/UpdateService";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -38,27 +39,48 @@ const router = createBrowserRouter([
       },
       {
         path: "/addAService",
-        element: <AddAServices></AddAServices>,
+        element: (
+          <PrivateRoute>
+            <AddAServices></AddAServices>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/serviceDetails/:id",
-        element: <ServiceCardDetails></ServiceCardDetails>,
+        element: (
+          <PrivateRoute>
+            <ServiceCardDetails></ServiceCardDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
       },
       {
         path: "/manageService",
-        element: <ManageService></ManageService>,
+
+        element: (
+          <PrivateRoute>
+            <ManageService></ManageService>,
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/services"),
       },
       {
         path: "/bookedService",
-        element: <BookedService></BookedService>,
+        element: (
+          <PrivateRoute>
+            <BookedService></BookedService>
+          </PrivateRoute>
+        ),
         loader: () => fetch(`${import.meta.env.VITE_API_URL}/bookings`),
       },
       {
         path: "/bookService/:id",
-        element: <BookService></BookService>,
+        element: (
+          <PrivateRoute>
+            <BookService></BookService>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
       },

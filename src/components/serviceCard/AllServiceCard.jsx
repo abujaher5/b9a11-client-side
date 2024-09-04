@@ -7,18 +7,11 @@ const AllServiceCard = ({ service }) => {
     serviceName,
     serviceImage,
     description,
-    // providerImage,
     providerName,
-    // providerEmail,
     area,
     price,
-    // serviceTakingDate,
-    // currentUserName,
-    // currentUserEmail,
-    // specialInstruction,
   } = service;
-  // console.log(service);
-  // console.log(_id);
+
   return (
     <div className="card card-compact mx-auto w-3/4 bg-base-100 shadow-xl">
       <Helmet>

@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 
 const Home = () => {
   const popularServiceData = useLoaderData();
-  // console.log(popularServiceData);
+
   return (
     <div>
       <Helmet>
