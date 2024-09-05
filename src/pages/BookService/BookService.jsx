@@ -55,7 +55,7 @@ const BookService = () => {
     console.log(bookingDetails);
 
     fetch(
-      "https://assignment-11-server-m3w8ynb3e-abu-jahers-projects.vercel.app/bookings",
+      "https://assignment-11-server-epjpr19us-abu-jahers-projects.vercel.app/bookings",
       {
         method: "POST",
         headers: {

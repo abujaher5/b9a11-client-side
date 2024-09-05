@@ -45,7 +45,7 @@ const UpdateService = () => {
     //send data
 
     fetch(
-      `https://assignment-11-server-m3w8ynb3e-abu-jahers-projects.vercel.app/services/${_id}`,
+      `https://assignment-11-server-epjpr19us-abu-jahers-projects.vercel.app/services/${_id}`,
       {
         method: "PUT",
         headers: {
