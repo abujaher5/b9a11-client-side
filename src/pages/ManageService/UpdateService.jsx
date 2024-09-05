@@ -44,16 +44,13 @@ const UpdateService = () => {
 
     //send data
 
-    fetch(
-      `https://assignment-11-server-epjpr19us-abu-jahers-projects.vercel.app/services/${_id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updateDetails),
-      }
-    )
+    fetch(`https://assignment-11-server-chi-azure.vercel.app/services/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateDetails),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

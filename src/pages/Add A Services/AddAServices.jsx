@@ -31,16 +31,13 @@ const AddAServices = () => {
     };
     console.log(formDetails);
 
-    fetch(
-      "https://assignment-11-server-epjpr19us-abu-jahers-projects.vercel.app/services",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formDetails),
-      }
-    )
+    fetch("https://assignment-11-server-chi-azure.vercel.app/services", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(formDetails),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

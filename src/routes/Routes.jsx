@@ -64,9 +64,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () =>
-          fetch(
-            "https://assignment-11-server-epjpr19us-abu-jahers-projects.vercel.app/services"
-          ),
+          fetch("https://assignment-11-server-chi-azure.vercel.app/services"),
       },
       {
         path: "/bookedService",
