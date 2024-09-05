@@ -21,9 +21,12 @@ const ManageService = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/services/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://assignment-11-server-m3w8ynb3e-abu-jahers-projects.vercel.app/services/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

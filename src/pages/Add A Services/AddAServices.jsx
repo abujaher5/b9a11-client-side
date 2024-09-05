@@ -31,13 +31,16 @@ const AddAServices = () => {
     };
     console.log(formDetails);
 
-    fetch("http://localhost:5000/services", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formDetails),
-    })
+    fetch(
+      "https://assignment-11-server-m3w8ynb3e-abu-jahers-projects.vercel.app/services",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formDetails),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

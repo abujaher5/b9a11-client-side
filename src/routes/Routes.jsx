@@ -63,7 +63,10 @@ const router = createBrowserRouter([
             <ManageService></ManageService>,
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch(
+            "https://assignment-11-server-m3w8ynb3e-abu-jahers-projects.vercel.app/services"
+          ),
       },
       {
         path: "/bookedService",

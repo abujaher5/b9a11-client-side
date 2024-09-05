@@ -54,13 +54,16 @@ const BookService = () => {
     };
     console.log(bookingDetails);
 
-    fetch("http://localhost:5000/bookings", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(bookingDetails),
-    })
+    fetch(
+      "https://assignment-11-server-m3w8ynb3e-abu-jahers-projects.vercel.app/bookings",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(bookingDetails),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
