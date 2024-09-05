@@ -38,11 +38,13 @@ const Banner = () => {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
               <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                <h1 className="mb-5 text-5xl font-bold">
+                  Welcome To Fix Gadget
+                </h1>
                 <p className="mb-5">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
+                  A fixed electronic gadget is an electronic device that remains
+                  permanently installed in a specific location, offering
+                  continuous service.
                 </p>
                 <button className="btn btn-primary">Get Started</button>
               </div>
@@ -60,11 +62,12 @@ const Banner = () => {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
               <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                <h1 className="mb-5 text-5xl font-bold">Fixed Your Gadget</h1>
                 <p className="mb-5">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
+                  Common examples of fixed electronic gadgets include air
+                  conditioning units, built-in home security systems, and
+                  central heating control units, which are typically found in
+                  modern homes or offices.
                 </p>
                 <button className="btn btn-primary">Get Started</button>
               </div>
@@ -82,11 +85,14 @@ const Banner = () => {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
               <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                <h1 className="mb-5 text-5xl font-bold">
+                  Welcome To Fix Gadget
+                </h1>
                 <p className="mb-5">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
+                  These devices are not portable and are designed to remain in a
+                  fixed position, usually requiring professional installation
+                  and integration with the building’s electrical or plumbing
+                  systems.
                 </p>
                 <button className="btn btn-primary">Get Started</button>
               </div>
@@ -104,11 +110,11 @@ const Banner = () => {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
               <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+                <h1 className="mb-5 text-5xl font-bold">Fixed Your Gadget</h1>
                 <p className="mb-5">
-                  Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                  assumenda excepturi exercitationem quasi. In deleniti eaque
-                  aut repudiandae et a id nisi.
+                  Fixed electronic gadgets are engineered to provide long-term
+                  functionality, with a focus on reliability, durability, and
+                  low maintenance requirements over extended periods.
                 </p>
                 <button className="btn btn-primary">Get Started</button>
               </div>
