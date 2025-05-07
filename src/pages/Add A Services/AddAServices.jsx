@@ -31,7 +31,7 @@ const AddAServices = () => {
     };
     console.log(formDetails);
 
-    fetch("https://assignment-11-server-chi-azure.vercel.app/services", {
+    fetch("http://localhost:5000/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -93,7 +93,7 @@ const AddAServices = () => {
               type="text"
               name="serviceImage"
               placeholder="Enter Image URL"
-              className="input input-bordered w-full "
+              className="input input-bordered w-full"
             />
           </div>
           <div className="form-control">

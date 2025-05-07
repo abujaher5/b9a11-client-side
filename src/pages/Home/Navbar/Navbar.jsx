@@ -1,9 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+
+  const dropdownLinkRef = useRef(null);
+
+  const handleLinkClick = () => {
+    if (dropdownLinkRef.current) {
+      dropdownLinkRef.current.removeAttribute("open");
+    }
+  };
 
   // const navigate=useNavigate();
 
@@ -30,46 +38,51 @@ const Navbar = () => {
   };
   return (
     <div className="navbar justify-between bg-base-100">
+      {/* logo */}
       <div className="">
         <Link to="/">
           <button className="btn btn-ghost text-xl">Fix Gadget</button>
         </Link>
       </div>
+
+      {/* menu item */}
+
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
-          <Link to="/allService">
-            <li className="p-2 z-10 bg-base-100 rounded-t-none">Services</li>
-          </Link>
+        <ul className="menu menu-horizontal flex justify-center items-center px-1">
+          <li className="p-2 z-10 bg-base-100 rounded-t-none">
+            <Link to="/allService">Services</Link>
+          </li>
           <li>
-            <details>
-              <summary>Dashboard</summary>
+            <details className="dropdown " ref={dropdownLinkRef}>
+              <summary className=" m-1">Dashboard</summary>
               <ul className="p-2 z-10 bg-base-100  rounded-t-none">
-                <Link to="/addAService">
-                  <li className="px-2 py-2 mb-1 btn-outline bg-base-100 shadow-lg border  rounded-md">
+                <li className=" mb-1 btn-outline bg-base-100 shadow-lg border  rounded-md">
+                  <Link to="/addAService" onClick={handleLinkClick}>
                     Add A Service
-                  </li>
-                </Link>
-                <Link to="/manageService">
-                  <li className="px-2 py-2  mb-1 btn-outline bg-base-100 shadow-lg border  rounded-md">
+                  </Link>
+                </li>
+                <li className=" mb-1 btn-outline bg-base-100 shadow-lg border  rounded-md">
+                  <Link to="/manageService" onClick={handleLinkClick}>
                     Manage Service
-                  </li>
-                </Link>
-                <Link to="/bookedService">
-                  <li className="px-2 mb-1 btn-outline py-2 bg-base-100 shadow-lg border  rounded-md">
+                  </Link>
+                </li>
+                <li className=" mb-1 btn-outline bg-base-100 shadow-lg border  rounded-md">
+                  <Link to="/bookedService" onClick={handleLinkClick}>
                     Booked Service
-                  </li>
-                </Link>
-                <Link to="/serviceToDo">
-                  <li className="px-2 py-2 btn-outline bg-base-100 shadow-lg border  rounded-md">
+                  </Link>
+                </li>
+                <li className=" btn-outline bg-base-100 shadow-lg border  rounded-md">
+                  <Link to="/service-to-do" onClick={handleLinkClick}>
                     Service To Do
-                  </li>
-                </Link>
+                  </Link>
+                </li>
               </ul>
             </details>
           </li>
         </ul>
       </div>
 
+      {/* user profile and toggle  button for theme change*/}
       <div className="flex gap-2">
         <div>
           <input

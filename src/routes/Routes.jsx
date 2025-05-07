@@ -12,6 +12,7 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import BookService from "../pages/BookService/BookService";
 import UpdateService from "../pages/ManageService/UpdateService";
 import PrivateRoute from "./PrivateRoute";
+import ServiceToDo from "../pages/Service To Do/ServiceToDo";
 
 const router = createBrowserRouter([
   {
@@ -63,8 +64,7 @@ const router = createBrowserRouter([
             <ManageService></ManageService>,
           </PrivateRoute>
         ),
-        loader: () =>
-          fetch("https://assignment-11-server-chi-azure.vercel.app/services"),
+        loader: () => fetch("http://localhost:5000/services"),
       },
       {
         path: "/bookedService",
@@ -90,6 +90,10 @@ const router = createBrowserRouter([
         element: <UpdateService></UpdateService>,
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
+      },
+      {
+        path: "/service-to-do",
+        element: <ServiceToDo />,
       },
     ],
   },
