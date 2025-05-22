@@ -92,7 +92,7 @@ const router = createBrowserRouter([
           fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
       },
       {
-        path: "/service-to-do",
+        path: "/serviceToDo",
         element: <ServiceToDo />,
       },
     ],

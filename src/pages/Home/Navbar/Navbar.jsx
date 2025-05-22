@@ -72,7 +72,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className=" btn-outline bg-base-100 shadow-lg border  rounded-md">
-                  <Link to="/service-to-do" onClick={handleLinkClick}>
+                  <Link to="/serviceToDo" onClick={handleLinkClick}>
                     Service To Do
                   </Link>
                 </li>
