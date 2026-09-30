@@ -1,12 +1,14 @@
+import logo from "../../assets/fixedGadgetLogo.png";
+
 const Footer = () => {
   return (
     <footer className="footer p-10 bg-base-200 text-base-content">
       <aside>
-        <img src="" alt="Photo" />
+        <img className="h-10 w-10 rounded-full" src={logo} alt="Photo" />
         <p>
-          ACME Industries Ltd.
+          Fixed Gadget
           <br />
-          Providing reliable tech since 1992
+          Providing repairing services of damage gadget since 2024
         </p>
       </aside>
       <nav>

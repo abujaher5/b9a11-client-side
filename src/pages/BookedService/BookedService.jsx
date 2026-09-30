@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const BookedService = () => {
   const bookedServices = useLoaderData();
+  console.log(bookedServices);
   return (
     <div className="container p-2 mx-auto  sm:p-4 text-black">
       <Helmet>

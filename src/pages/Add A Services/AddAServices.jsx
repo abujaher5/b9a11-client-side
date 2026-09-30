@@ -90,10 +90,10 @@ const AddAServices = () => {
           <div className="form-control">
             <label className="label">Service Image URL</label>
             <input
-              type="text"
+              type="file"
               name="serviceImage"
               placeholder="Enter Image URL"
-              className="input input-bordered w-full"
+              className="file-input  w-full"
             />
           </div>
           <div className="form-control">

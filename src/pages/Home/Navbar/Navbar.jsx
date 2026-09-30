@@ -41,7 +41,7 @@ const Navbar = () => {
       {/* logo */}
       <div className="">
         <Link to="/">
-          <button className="btn btn-ghost text-xl">Fix Gadget</button>
+          <button className="btn btn-ghost text-xl">Fixed Gadget</button>
         </Link>
       </div>
 
