@@ -42,7 +42,7 @@ const BookedService = () => {
                   <p>{bService.serviceName}</p>
                 </td>
                 <td className="p-3">
-                  <p>{bService.ServiceTakingDate}</p>
+                  <p>{bService.serviceTakingDate}</p>
                 </td>
                 <td className="p-3">
                   <p>{bService.providerName}</p>
