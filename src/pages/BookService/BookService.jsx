@@ -10,6 +10,7 @@ import {
   FaMapMarkerAlt,
   FaUser,
 } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const FALLBACK_AVATAR =
   "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg";
@@ -70,7 +71,13 @@ const BookService = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          alert("Booking Successfully");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Service has been booked",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
         navigate("/bookedService");
       });
@@ -95,7 +102,11 @@ const BookService = () => {
         <input type="hidden" name="serviceId" defaultValue={_id} />
         <input type="hidden" name="serviceImage" defaultValue={serviceImage} />
         <input type="hidden" name="providerName" defaultValue={providerName} />
-        <input type="hidden" name="providerEmail" defaultValue={providerEmail} />
+        <input
+          type="hidden"
+          name="providerEmail"
+          defaultValue={providerEmail}
+        />
         <input type="hidden" name="price" defaultValue={price} />
 
         <div className="lg:col-span-2">
