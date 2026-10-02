@@ -3,6 +3,7 @@ import Banner from "./Banner/Banner";
 import PopularService from "./PopularService/PopularService";
 import { Helmet } from "react-helmet";
 import ContactUs from "./ContactUs/ContactUs";
+import HowItWorks from "./HowItWorks/HowItWorks";
 
 const Home = () => {
   const popularServiceData = useLoaderData();
@@ -26,6 +27,9 @@ const Home = () => {
           <Link to="/allService">
             <button className="btn btn-outline">Show All</button>
           </Link>
+        </div>
+        <div className="my-3">
+          <HowItWorks></HowItWorks>
         </div>
         <div className="my-3">
           <ContactUs></ContactUs>
