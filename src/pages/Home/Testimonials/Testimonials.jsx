@@ -43,8 +43,8 @@ const Testimonials = () => {
             </span>
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-base-content/60">
-            Thousands of gadgets repaired and counting. Here&apos;s what our happy
-            customers have to say about their experience.
+            Thousands of gadgets repaired and counting. Here&apos;s what our
+            happy customers have to say about their experience.
           </p>
         </div>
 
