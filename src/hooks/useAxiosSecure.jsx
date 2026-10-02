@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
-  baseURL: import.meta.env.VITE_API_ULR,
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
 

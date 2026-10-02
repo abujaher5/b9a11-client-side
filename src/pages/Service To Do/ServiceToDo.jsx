@@ -23,7 +23,7 @@ const ServiceToDo = () => {
   useEffect(() => {
     if (!user?.email) return;
     setLoading(true);
-    fetch(`http://localhost:5000/bookings?providerEmail=${user.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/bookings?providerEmail=${user.email}`)
       .then((res) => res.json())
       .then((data) => setBookings(Array.isArray(data) ? data : []))
       .catch(() => setBookings([]))
@@ -31,7 +31,7 @@ const ServiceToDo = () => {
   }, [user?.email]);
 
   const handleStatusChange = (id, serviceStatus) => {
-    fetch(`http://localhost:5000/bookings/${id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/bookings/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

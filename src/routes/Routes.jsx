@@ -64,7 +64,7 @@ const router = createBrowserRouter([
             <ManageService></ManageService>,
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/services`),
       },
       {
         path: "/bookedService",

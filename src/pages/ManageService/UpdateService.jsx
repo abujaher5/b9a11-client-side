@@ -44,7 +44,7 @@ const UpdateService = () => {
 
     //send data
 
-    fetch(`http://localhost:5000/services/${_id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/services/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
