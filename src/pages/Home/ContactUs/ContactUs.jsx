@@ -47,7 +47,7 @@ const ContactUs = () => {
     "w-full rounded-xl border border-base-300 bg-base-100 px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-base-content/40 focus:border-primary focus:ring-2 focus:ring-primary/30";
 
   return (
-    <section className="py-16 px-4 sm:px-8">
+    <section id="contact" className="py-16 px-4 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 text-center">
           <span className="badge badge-primary badge-outline gap-2 px-4 py-3 font-medium">

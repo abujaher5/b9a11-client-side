@@ -4,6 +4,8 @@ import PopularService from "./PopularService/PopularService";
 import { Helmet } from "react-helmet";
 import ContactUs from "./ContactUs/ContactUs";
 import HowItWorks from "./HowItWorks/HowItWorks";
+import Testimonials from "./Testimonials/Testimonials";
+import FAQ from "./FAQ/FAQ";
 
 const Home = () => {
   const popularServiceData = useLoaderData();
@@ -30,6 +32,12 @@ const Home = () => {
         </div>
         <div className="my-3">
           <HowItWorks></HowItWorks>
+        </div>
+        <div className="my-3">
+          <Testimonials></Testimonials>
+        </div>
+        <div className="my-3">
+          <FAQ></FAQ>
         </div>
         <div className="my-3">
           <ContactUs></ContactUs>
