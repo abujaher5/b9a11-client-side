@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
+import { getAvatarUrl } from "../../utils/avatar";
+import Avatar from "../../components/Avatar/Avatar";
 import {
   FaCogs,
   FaDollarSign,
@@ -51,7 +53,7 @@ const AddAServices = () => {
       serviceImage: form.serviceImage.value,
       providerName: form.providerName.value || user?.displayName,
       providerEmail: user?.email,
-      providerImage: user?.photoURL,
+      providerImage: getAvatarUrl(user),
       createdAt: new Date(),
     };
 
@@ -263,17 +265,7 @@ const AddAServices = () => {
               </h2>
 
               <div className="mb-4 flex items-center gap-3 rounded-xl bg-base-200/70 p-3">
-                <div className="avatar">
-                  <div className="w-12 rounded-full ring ring-[#FF3811]/30 ring-offset-1">
-                    <img
-                      src={
-                        user?.photoURL ||
-                        "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                      }
-                      alt="Provider"
-                    />
-                  </div>
-                </div>
+                <Avatar user={user} sizeClass="h-12 w-12" textClass="text-lg" />
                 <div className="min-w-0">
                   <p className="truncate font-semibold">{user?.displayName}</p>
                   <p className="truncate text-xs text-base-content/60">

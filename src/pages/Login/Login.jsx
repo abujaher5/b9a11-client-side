@@ -2,8 +2,7 @@ import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import app from "../../firebase/firebase.config";
+import useGoogleLogin from "../../hooks/useGoogleLogin";
 import {
   FaEnvelope,
   FaLock,
@@ -21,26 +20,30 @@ const features = [
   { icon: FaCheckCircle, text: "90-day repair warranty" },
 ];
 
+const IGNORED_GOOGLE_ERRORS = [
+  "auth/popup-closed-by-user",
+  "auth/cancelled-popup-request",
+];
+
 const Login = () => {
   const { logInUser } = useContext(AuthContext);
+  const { googleLogin, googleLoading } = useGoogleLogin();
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
   const navigate = useNavigate();
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     setError("");
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        console.log(result.user);
-        navigate("/");
-      })
-      .catch((err) => {
-        console.error(err);
+    try {
+      await googleLogin();
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      if (!IGNORED_GOOGLE_ERRORS.includes(err.code)) {
         setError(err.message);
-      });
+      }
+    }
   };
 
   const handleLogin = (e) => {
@@ -176,10 +179,20 @@ const Login = () => {
 
           <button
             onClick={handleGoogleLogin}
+            disabled={googleLoading}
             className="btn btn-outline w-full gap-2 rounded-xl"
           >
-            <FcGoogle className="text-xl" />
-            Sign in with Google
+            {googleLoading ? (
+              <>
+                <span className="loading loading-spinner loading-sm"></span>
+                Signing in...
+              </>
+            ) : (
+              <>
+                <FcGoogle className="text-xl" />
+                Sign in with Google
+              </>
+            )}
           </button>
 
           <p className="mt-6 text-center text-sm text-base-content/60">

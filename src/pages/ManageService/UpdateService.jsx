@@ -1,13 +1,10 @@
-import { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet";
 
 const UpdateService = () => {
   const updateService = useLoaderData();
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
   const {
     _id,
     serviceName,

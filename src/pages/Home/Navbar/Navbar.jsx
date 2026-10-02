@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import Avatar from "../../../components/Avatar/Avatar";
 import logo from "../../../assets/fixedGadgetLogo.png";
 import {
   FaSun,
@@ -143,20 +144,7 @@ const Navbar = () => {
                   role="button"
                   className="flex items-center gap-2 rounded-full p-1 pr-3 hover:bg-base-200 transition-colors"
                 >
-                  <div className="avatar">
-                    <div className="w-9 rounded-full ring ring-primary ring-offset-2 ring-offset-base-100">
-                      <img
-                        referrerPolicy="no-referrer"
-                        alt={user?.displayName || "User Profile"}
-                        src={
-                          user?.photoURL ||
-                          `https://ui-avatars.com/api/?name=${
-                            user?.displayName || "User"
-                          }&background=random`
-                        }
-                      />
-                    </div>
-                  </div>
+                  <Avatar user={user} sizeClass="h-9 w-9" textClass="text-sm" />
                   <span className="text-sm font-semibold max-w-[8rem] truncate">
                     {user?.displayName || "Account"}
                   </span>
@@ -227,20 +215,7 @@ const Navbar = () => {
         <div className="px-4 pb-5 pt-1 space-y-1 border-t border-base-300 bg-base-100">
           {user && (
             <div className="flex items-center gap-3 py-3">
-              <div className="avatar">
-                <div className="w-10 rounded-full ring ring-primary ring-offset-2 ring-offset-base-100">
-                  <img
-                    referrerPolicy="no-referrer"
-                    alt={user?.displayName || "User Profile"}
-                    src={
-                      user?.photoURL ||
-                      `https://ui-avatars.com/api/?name=${
-                        user?.displayName || "User"
-                      }&background=random`
-                    }
-                  />
-                </div>
-              </div>
+              <Avatar user={user} sizeClass="h-10 w-10" textClass="text-base" />
               <div className="flex flex-col">
                 <span className="font-semibold">
                   {user?.displayName || "User"}

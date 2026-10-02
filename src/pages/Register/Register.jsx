@@ -2,13 +2,11 @@ import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import app from "../../firebase/firebase.config";
+import useGoogleLogin from "../../hooks/useGoogleLogin";
 import {
   FaUser,
   FaEnvelope,
   FaLock,
-  FaImage,
   FaEye,
   FaEyeSlash,
   FaTools,
@@ -23,39 +21,46 @@ const features = [
   { icon: FaCheckCircle, text: "90-day repair warranty" },
 ];
 
+const IGNORED_GOOGLE_ERRORS = [
+  "auth/popup-closed-by-user",
+  "auth/cancelled-popup-request",
+];
+
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+  const { googleLogin, googleLoading } = useGoogleLogin();
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
   const navigate = useNavigate();
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     setError("");
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        console.log(result.user);
-        navigate("/");
-      })
-      .catch((err) => {
-        console.error(err);
+    try {
+      await googleLogin();
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      if (!IGNORED_GOOGLE_ERRORS.includes(err.code)) {
         setError(err.message);
-      });
+      }
+    }
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
     setError("");
     const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
     const password = form.password.value;
 
-    console.log(name, email, password);
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
 
-    createUser(email, password)
+    createUser(name, email, password)
       .then((result) => {
         console.log(result.user);
         navigate("/");
@@ -124,7 +129,7 @@ const Register = () => {
                   id="name"
                   type="text"
                   name="name"
-                  placeholder="John Doe"
+                  placeholder="Enter Your Name"
                   required
                   className="input input-bordered w-full rounded-xl pl-11"
                 />
@@ -141,24 +146,7 @@ const Register = () => {
                   id="email"
                   type="email"
                   name="email"
-                  placeholder="you@example.com"
-                  required
-                  className="input input-bordered w-full rounded-xl pl-11"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="photoUrl" className="text-sm font-medium">
-                Photo URL
-              </label>
-              <div className="relative">
-                <FaImage className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-base-content/40" />
-                <input
-                  id="photoUrl"
-                  type="text"
-                  name="photoUrl"
-                  placeholder="https://example.com/photo.jpg"
+                  placeholder="you@gmail.com"
                   required
                   className="input input-bordered w-full rounded-xl pl-11"
                 />
@@ -212,10 +200,20 @@ const Register = () => {
 
           <button
             onClick={handleGoogleLogin}
+            disabled={googleLoading}
             className="btn btn-outline w-full gap-2 rounded-xl"
           >
-            <FcGoogle className="text-xl" />
-            Sign up with Google
+            {googleLoading ? (
+              <>
+                <span className="loading loading-spinner loading-sm"></span>
+                Signing up...
+              </>
+            ) : (
+              <>
+                <FcGoogle className="text-xl" />
+                Sign up with Google
+              </>
+            )}
           </button>
 
           <p className="mt-6 text-center text-sm text-base-content/60">
