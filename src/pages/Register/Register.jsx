@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import useGoogleLogin from "../../hooks/useGoogleLogin";
+import { ROLES } from "../../config/roles";
 import {
   FaUser,
   FaEnvelope,
@@ -54,13 +55,14 @@ const Register = () => {
     const name = form.name.value.trim();
     const email = form.email.value.trim();
     const password = form.password.value;
+    const role = form.role.value;
 
     if (password.length < 6) {
       setError("Password must be at least 6 characters long.");
       return;
     }
 
-    createUser(name, email, password)
+    createUser(name, email, password, role)
       .then((result) => {
         console.log(result.user);
         navigate("/");
@@ -175,6 +177,43 @@ const Register = () => {
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <span className="text-sm font-medium">I want to</span>
+              <div className="grid grid-cols-2 gap-3">
+                <label className="flex cursor-pointer flex-col gap-1.5 rounded-xl border border-base-300 p-3 transition-colors hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/10">
+                  <input
+                    type="radio"
+                    name="role"
+                    value={ROLES.CONSUMER}
+                    defaultChecked
+                    className="radio radio-primary radio-sm"
+                  />
+                  <span className="flex items-center gap-2 text-sm font-semibold">
+                    <FaUser className="text-primary" />
+                    Book repairs
+                  </span>
+                  <span className="text-xs text-base-content/50">
+                    I&apos;m a customer
+                  </span>
+                </label>
+                <label className="flex cursor-pointer flex-col gap-1.5 rounded-xl border border-base-300 p-3 transition-colors hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/10">
+                  <input
+                    type="radio"
+                    name="role"
+                    value={ROLES.PROVIDER}
+                    className="radio radio-primary radio-sm"
+                  />
+                  <span className="flex items-center gap-2 text-sm font-semibold">
+                    <FaTools className="text-primary" />
+                    Offer repairs
+                  </span>
+                  <span className="text-xs text-base-content/50">
+                    I&apos;m a provider
+                  </span>
+                </label>
               </div>
             </div>
 

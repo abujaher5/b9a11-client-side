@@ -12,7 +12,11 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import BookService from "../pages/BookService/BookService";
 import UpdateService from "../pages/ManageService/UpdateService";
 import PrivateRoute from "./PrivateRoute";
+import RequireRole from "./RequireRole";
+import { ROLES } from "../config/roles";
 import ServiceToDo from "../pages/Service To Do/ServiceToDo";
+
+const PROVIDER_ROLES = [ROLES.PROVIDER, ROLES.ADMIN];
 
 const router = createBrowserRouter([
   {
@@ -41,9 +45,9 @@ const router = createBrowserRouter([
       {
         path: "/addAService",
         element: (
-          <PrivateRoute>
+          <RequireRole roles={PROVIDER_ROLES}>
             <AddAServices></AddAServices>
-          </PrivateRoute>
+          </RequireRole>
         ),
       },
       {
@@ -60,9 +64,9 @@ const router = createBrowserRouter([
         path: "/manageService",
 
         element: (
-          <PrivateRoute>
-            <ManageService></ManageService>,
-          </PrivateRoute>
+          <RequireRole roles={PROVIDER_ROLES}>
+            <ManageService></ManageService>
+          </RequireRole>
         ),
         loader: () => fetch(`${import.meta.env.VITE_API_URL}/services`),
       },
@@ -87,13 +91,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/updateService/:id",
-        element: <UpdateService></UpdateService>,
+        element: (
+          <RequireRole roles={PROVIDER_ROLES}>
+            <UpdateService></UpdateService>
+          </RequireRole>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/services/${params.id}`),
       },
       {
         path: "/serviceToDo",
-        element: <ServiceToDo />,
+        element: (
+          <RequireRole roles={PROVIDER_ROLES}>
+            <ServiceToDo />
+          </RequireRole>
+        ),
       },
     ],
   },

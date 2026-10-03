@@ -1,17 +1,32 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { FaEdit, FaPlus, FaTools } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
+import { ROLES } from "../../config/roles";
 
 const FALLBACK_IMAGE =
   "https://img.daisyui.com/images/stock/photo-1560393464-5c69a73c5770.jpg";
 
 const ManageService = () => {
   const loadedServices = useLoaderData();
+  const { user, role } = useContext(AuthContext);
+
+  const isAdmin = role === ROLES.ADMIN;
 
   const [services, setServices] = useState(loadedServices);
+
+  useEffect(() => {
+    if (isAdmin) {
+      setServices(loadedServices);
+    } else if (user?.email) {
+      setServices(
+        loadedServices.filter((service) => service.providerEmail === user.email)
+      );
+    }
+  }, [isAdmin, user?.email, loadedServices]);
 
   const handleDelete = (_id) => {
     Swal.fire({

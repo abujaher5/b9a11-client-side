@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Avatar from "../../../components/Avatar/Avatar";
+import { ROLES, ROLE_META } from "../../../config/roles";
 import logo from "../../../assets/fixedGadgetLogo.png";
 import {
   FaSun,
@@ -19,10 +20,30 @@ import {
 } from "react-icons/fa";
 
 const dashboardLinks = [
-  { to: "/addAService", label: "Add A Service", icon: FaPlusCircle },
-  { to: "/manageService", label: "Manage Service", icon: FaThLarge },
-  { to: "/bookedService", label: "Booked Service", icon: FaClipboardList },
-  { to: "/serviceToDo", label: "Service To Do", icon: FaTasks },
+  {
+    to: "/bookedService",
+    label: "Booked Service",
+    icon: FaClipboardList,
+    roles: [ROLES.CONSUMER, ROLES.ADMIN],
+  },
+  {
+    to: "/addAService",
+    label: "Add A Service",
+    icon: FaPlusCircle,
+    roles: [ROLES.PROVIDER, ROLES.ADMIN],
+  },
+  {
+    to: "/manageService",
+    label: "Manage Service",
+    icon: FaThLarge,
+    roles: [ROLES.PROVIDER, ROLES.ADMIN],
+  },
+  {
+    to: "/serviceToDo",
+    label: "Service To Do",
+    icon: FaTasks,
+    roles: [ROLES.PROVIDER, ROLES.ADMIN],
+  },
 ];
 
 const navLinkClass = ({ isActive }) =>
@@ -33,7 +54,11 @@ const navLinkClass = ({ isActive }) =>
   }`;
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, role, logOut } = useContext(AuthContext);
+
+  const roleLinks = dashboardLinks.filter((link) => link.roles.includes(role));
+  const roleBadge = ROLE_META[role]?.badge;
+  const roleLabel = ROLE_META[role]?.label;
 
   const dropdownLinkRef = useRef(null);
 
@@ -97,14 +122,14 @@ const Navbar = () => {
             Services
           </NavLink>
 
-          {user && (
+          {user && roleLinks.length > 0 && (
             <details className="dropdown" ref={dropdownLinkRef}>
               <summary className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium cursor-pointer list-none text-base-content/70 hover:text-primary hover:bg-base-200 transition-all duration-200">
                 Dashboard
                 <FaChevronDown className="text-[10px] opacity-60" />
               </summary>
               <ul className="menu dropdown-content mt-3 w-56 p-2 bg-base-100 rounded-2xl border border-base-200 shadow-xl">
-                {dashboardLinks.map(({ to, label, icon: Icon }) => (
+                {roleLinks.map(({ to, label, icon: Icon }) => (
                   <li key={to}>
                     <Link
                       to={to}
@@ -161,6 +186,13 @@ const Navbar = () => {
                       <span className="text-xs text-base-content/50 truncate">
                         {user?.email}
                       </span>
+                      {roleLabel && (
+                        <span
+                          className={`badge badge-sm mt-1.5 border-none ${roleBadge}`}
+                        >
+                          {roleLabel}
+                        </span>
+                      )}
                     </div>
                   </li>
                   <div className="divider my-1"></div>
@@ -223,6 +255,13 @@ const Navbar = () => {
                 <span className="text-xs text-base-content/50 truncate">
                   {user?.email}
                 </span>
+                {roleLabel && (
+                  <span
+                    className={`badge badge-sm mt-1 border-none ${roleBadge}`}
+                  >
+                    {roleLabel}
+                  </span>
+                )}
               </div>
             </div>
           )}
@@ -241,12 +280,12 @@ const Navbar = () => {
             Services
           </NavLink>
 
-          {user && (
+          {user && roleLinks.length > 0 && (
             <>
               <p className="px-4 pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-base-content/40">
                 Dashboard
               </p>
-              {dashboardLinks.map(({ to, label, icon: Icon }) => (
+              {roleLinks.map(({ to, label, icon: Icon }) => (
                 <NavLink
                   key={to}
                   to={to}

@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
+import { ROLES } from "../../config/roles";
 import { STATUS_OPTIONS, getStatusMeta } from "../../utils/serviceStatus";
 import {
   FaBoxOpen,
@@ -10,25 +11,31 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
   FaUser,
+  FaUserCog,
 } from "react-icons/fa";
 
 const tabs = [{ value: "all", label: "All" }, ...STATUS_OPTIONS];
 
 const ServiceToDo = () => {
-  const { user } = useContext(AuthContext);
+  const { user, role } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
 
+  const isAdmin = role === ROLES.ADMIN;
+
   useEffect(() => {
     if (!user?.email) return;
     setLoading(true);
-    fetch(`${import.meta.env.VITE_API_URL}/bookings?providerEmail=${user.email}`)
+    const query = isAdmin
+      ? ""
+      : `?providerEmail=${encodeURIComponent(user.email)}`;
+    fetch(`${import.meta.env.VITE_API_URL}/bookings${query}`)
       .then((res) => res.json())
       .then((data) => setBookings(Array.isArray(data) ? data : []))
       .catch(() => setBookings([]))
       .finally(() => setLoading(false));
-  }, [user?.email]);
+  }, [user?.email, isAdmin]);
 
   const handleStatusChange = (id, serviceStatus) => {
     fetch(`${import.meta.env.VITE_API_URL}/bookings/${id}`, {
@@ -170,6 +177,19 @@ const ServiceToDo = () => {
                     </span>
                   </p>
                 </div>
+
+                {isAdmin && (
+                  <p className="mt-3 flex items-center gap-2 rounded-xl bg-base-200/60 px-3 py-2 text-sm text-base-content/70">
+                    <FaUserCog className="text-[#FF3811]" />
+                    <span className="font-medium">Provider:</span>
+                    <span className="truncate">
+                      {booking.providerName || "Unknown"}
+                    </span>
+                    <span className="truncate text-base-content/50">
+                      ({booking.providerEmail})
+                    </span>
+                  </p>
+                )}
 
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                   <Link to={`/serviceDetails/${booking.serviceId}`}>
