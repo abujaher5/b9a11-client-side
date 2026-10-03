@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
   };
 
   //create user
-  const createUser = (name, email, password, selectedRole) => {
+  const createUser = async (name, email, password, selectedRole) => {
     setLoading(true);
     preferredRoleRef.current = selectedRole || ROLES.CONSUMER;
     return createUserWithEmailAndPassword(auth, email, password).then(
@@ -70,7 +70,7 @@ const AuthProvider = ({ children }) => {
           setUser({ ...auth.currentUser });
         }
         return result;
-      }
+      },
     );
   };
 
@@ -85,7 +85,15 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const authInfo = { user, role, loading, roleLoading, createUser, logInUser, logOut };
+  const authInfo = {
+    user,
+    role,
+    loading,
+    roleLoading,
+    createUser,
+    logInUser,
+    logOut,
+  };
 
   //observer to manage user
   useEffect(() => {
@@ -95,7 +103,7 @@ const AuthProvider = ({ children }) => {
         setRoleLoading(true);
         const resolvedRole = await resolveRole(
           currentUser,
-          preferredRoleRef.current
+          preferredRoleRef.current,
         );
         preferredRoleRef.current = null;
         setRole(resolvedRole || ROLES.CONSUMER);
