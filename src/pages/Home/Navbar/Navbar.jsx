@@ -68,6 +68,19 @@ const Navbar = () => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownLinkRef.current &&
+        !dropdownLinkRef.current.contains(event.target)
+      ) {
+        dropdownLinkRef.current.removeAttribute("open");
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "light"
   );
